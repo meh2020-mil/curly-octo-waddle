@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"hash/fnv"
+	"log"
 	"net/http"
 )
 
@@ -14,6 +15,7 @@ type h struct {
 }
 
 func (h) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	log.Println("Headers", r.Header)
 	challengeString := r.Header.Get("CHALLENGE")
 	f := fnv.New64()
 	f.Write([]byte(challengeString))
