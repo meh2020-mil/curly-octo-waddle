@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	http.ListenAndServe("::8080", h{})
+	http.ListenAndServe(":80", h{})
 }
 
 type h struct {
@@ -16,10 +16,10 @@ type h struct {
 
 func (h) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	log.Println("Headers", r.Header)
-	challengeString := r.Header.Get("CHALLENGE")
+	challengeString := r.Header.Get("Izayakun")
 	f := fnv.New64()
 	f.Write([]byte(challengeString))
 	response := f.Sum64()
-	w.Header().Set("RESPONSE", fmt.Sprintf("%d", response))
+	w.Header().Set("Shizuchan", fmt.Sprintf("%d", response))
 	w.WriteHeader(200)
 }
