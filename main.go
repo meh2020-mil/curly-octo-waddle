@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	http.ListenAndServe("::8080", h{})
+	http.ListenAndServe(":80", h{})
 }
 
 type h struct {
